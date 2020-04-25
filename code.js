@@ -4,6 +4,10 @@ var divTags = document.querySelectorAll("div");
 var h2Tags = document.querySelectorAll("h2");
 var pTags = document.querySelectorAll("p");
 var questDiv = document.createElement("div");
+var timeEl = document.querySelector("#time");
+
+var secondsLeft = 60;
+var score = 0;
 
 var p1 = document.createElement("p");
 var p2 = document.createElement("p");
@@ -17,7 +21,19 @@ var button4 = document.createElement("button");
 
 
 
+function setTime () {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = "Time: " + secondsLeft;
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            console.log("time up");
+            //This is where you'll add the score page function
+            
+        }
 
+    }, 1000);
+}
 
 
 
@@ -47,7 +63,7 @@ function firstQuestion() {
     button3.textContent = "3. Href Text Mark-Up Language"
     button4.textContent = "4. Href Technical Mark-Up Language"
 
-    
+    setTime();
 }
 
 
