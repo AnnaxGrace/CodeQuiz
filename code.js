@@ -3,7 +3,6 @@ var startBtn = document.querySelector(".myBtn");
 var divTags = document.querySelectorAll("div");
 var h2Tags = document.querySelectorAll("h2");
 var pTags = document.querySelectorAll("p");
-var button1 = document.querySelector(".btn");
 var questDiv = document.createElement("div");
 
 var p1 = document.createElement("p");
@@ -11,7 +10,7 @@ var p2 = document.createElement("p");
 var p3 = document.createElement("p");
 var p4 = document.createElement("p");
 
-
+var button1 = document.createElement("button");
 var button2 = document.createElement("button");
 var button3 = document.createElement("button");
 var button4 = document.createElement("button");
@@ -22,10 +21,10 @@ var button4 = document.createElement("button");
 
 
 
-function firstQuestion()
-{
+function firstQuestion() {
     h2Tags[0].textContent = "What does HTML stand for?"
     pTags[0].textContent = "" 
+    divTags[0].removeChild(divTags[0].children[2])
     divTags[0].appendChild(questDiv);
 
     questDiv.appendChild(p1);
@@ -53,7 +52,35 @@ function firstQuestion()
 
 
 startBtn.addEventListener("click", function() {
-    console.log("hi");
+    event.preventDefault();
     firstQuestion();
+
+});
+
+button1.addEventListener("click", function() {
+    event.preventDefault();
+    console.log("wow");
+    
+
+});
+
+button2.addEventListener("click", function() {
+    event.preventDefault();
+    console.log("wow2");
+    
+
+});
+
+button3.addEventListener("click", function() {
+    event.preventDefault();
+    console.log("wow3");
+    
+
+});
+
+button4.addEventListener("click", function() {
+    event.preventDefault();
+    console.log("wow4");
+    
 
 });
