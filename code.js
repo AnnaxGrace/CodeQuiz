@@ -11,6 +11,15 @@ var score = 0;
 var timeTrack = 5;
 var questionNumber = 0;
 
+/*
+var wrongText = document.createElement("p");
+var correctText = document.createElement("p");
+wrongText.textContent = "Wrong"
+correctText.textContent = "Correct"
+wrongText.setAttribute("style", "border-top: solid 2px gray; font-style: italic; visibility: hidden;");
+correctText.setAttribute("style","border-top: solid 2px gray; font-style: italic; visibility: hidden;");
+*/
+
 var p1 = document.createElement("p");
 var p2 = document.createElement("p");
 var p3 = document.createElement("p");
@@ -55,6 +64,8 @@ function firstQuestion() {
     questDiv.children[1].appendChild(button2);
     questDiv.children[2].appendChild(button3);
     questDiv.children[3].appendChild(button4);
+    // questDiv.appendChild(correctText);
+    // questDiv.appendChild(wrongText);
 
     button1.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
     button2.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
@@ -75,22 +86,31 @@ function firstQuestion() {
 }
 
 function rightWrong(parButton) {
-    if (parButton.value === "true") {
+    if (parButton.value === "true") {  
         score++
         questionNumber++
         timeTrack--
         console.log("score" + score);
         console.log("questionnumber" + questionNumber);
         console.log("timetrack" + timeTrack);
+        
     }
     else if (parButton.value === "false") {
             score--
             questionNumber++
             timeTrack--
+            secondsLeft--
+            secondsLeft--
+            secondsLeft--
+            secondsLeft--
+            secondsLeft--
+            secondsLeft--
+            console.log("seconds left" + secondsLeft);
             console.log("score" + score);
             console.log("questionnumber" + questionNumber);
             console.log("timetrack" + timeTrack);
     }
+    
     if (questionNumber === 1) {
         secondQuestion();
     }
@@ -175,14 +195,14 @@ function fifthQuestion() {
 startBtn.addEventListener("click", function() {
     event.preventDefault();
     firstQuestion();
-
+    
 });
 
 button1.addEventListener("click", function() {
     event.preventDefault();
     console.log("wow");
     rightWrong(button1);
-
+    
     
 
 });
@@ -192,7 +212,6 @@ button2.addEventListener("click", function() {
     console.log("wow2");
     rightWrong(button2)
     
-
 });
 
 button3.addEventListener("click", function() {
@@ -200,7 +219,6 @@ button3.addEventListener("click", function() {
     console.log("wow3");
     rightWrong(button3);
     
-
 });
 
 button4.addEventListener("click", function() {
