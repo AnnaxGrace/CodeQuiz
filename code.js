@@ -79,20 +79,29 @@ function rightWrong(parButton) {
         score++
         questionNumber++
         timeTrack--
-        console.log(score);
+        console.log("score" + score);
         console.log("questionnumber" + questionNumber);
-        console.log(timeTrack);
+        console.log("timetrack" + timeTrack);
     }
     else if (parButton.value === "false") {
             score--
             questionNumber++
             timeTrack--
-            console.log(score);
+            console.log("score" + score);
             console.log("questionnumber" + questionNumber);
-            console.log(timeTrack);
+            console.log("timetrack" + timeTrack);
     }
     if (questionNumber === 1) {
         secondQuestion();
+    }
+    if (questionNumber === 2) {
+        thirdQuestion();
+    }
+    if (questionNumber === 3) {
+        fourthQuestion();
+    }
+    if (questionNumber === 4) {
+        fifthQuestion();
     }
 }
 
@@ -111,6 +120,53 @@ function secondQuestion() {
     button2.value = "true"
     button3.value = "false"
     button4.value = "false"
+
+}
+function thirdQuestion() {
+
+    h2Tags[0].textContent = "The condition in an if/else statement is enclosed within___."
+
+    button1.textContent = "1. quotes"
+    button2.textContent = "2. curly brackets"
+    button3.textContent = "3. parentheses"
+    button4.textContent = "4. square brackets"
+
+    button1.value = "false"
+    button2.value = "false"
+    button3.value = "true"
+    button4.value = "false"
+
+}
+
+function fourthQuestion() {
+
+    h2Tags[0].textContent = "String values must be enclosed within ____ when being assigned to variables."
+
+    button1.textContent = "1. commas"
+    button2.textContent = "2. curly brackets"
+    button3.textContent = "3. parentheses"
+    button4.textContent = "4. quotes"
+
+    button1.value = "false"
+    button2.value = "false"
+    button3.value = "false"
+    button4.value = "true"
+
+}
+
+function fifthQuestion() {
+
+    h2Tags[0].textContent = "Arrays in JavaScript can be used to store ____."
+
+    button1.textContent = "1. numbers and strings"
+    button2.textContent = "2. other arrays"
+    button3.textContent = "3. booleans"
+    button4.textContent = "4. all of the above"
+
+    button1.value = "false"
+    button2.value = "false"
+    button3.value = "false"
+    button4.value = "true"
 
 }
 
