@@ -7,7 +7,7 @@ var questDiv = document.createElement("div");
 var timeEl = document.querySelector("#time");
 
 var secondsLeft = 60;
-var score = 5;
+var score = 0;
 var timeTrack = 5;
 var questionNumber = 0;
 
@@ -77,29 +77,43 @@ function firstQuestion() {
 function rightWrong(parButton) {
     if (parButton.value === "true") {
         score++
+        questionNumber++
+        timeTrack--
         console.log(score);
+        console.log("questionnumber" + questionNumber);
+        console.log(timeTrack);
     }
     else if (parButton.value === "false") {
             score--
+            questionNumber++
+            timeTrack--
             console.log(score);
+            console.log("questionnumber" + questionNumber);
+            console.log(timeTrack);
     }
-    
+    if (questionNumber === 1) {
+        secondQuestion();
     }
+}
 
 
 
-/* function secondQuestion() {
-    if (button1.value === "true") {
-    score++
-    console.log(score);
-    }
-    else if (button1.value === "false") {
-        score--
-        console.log(score);
-    }
+function secondQuestion() {
+
+    h2Tags[0].textContent = "Commonly used data types DO NOT include:"
+
+    button1.textContent = "1. strings"
+    button2.textContent = "2. alerts"
+    button3.textContent = "3. booleans"
+    button4.textContent = "4. numbers"
+
+    button1.value = "false"
+    button2.value = "true"
+    button3.value = "false"
+    button4.value = "false"
 
 }
-*/
+
 
 
 startBtn.addEventListener("click", function() {
