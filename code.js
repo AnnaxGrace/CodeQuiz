@@ -39,6 +39,7 @@ function setTime () {
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
             console.log("time up");
+            allDone();
             //This is where you'll add the score page function
             //do score - timeTrack, every time answer question -timeTrack
             
@@ -123,6 +124,9 @@ function rightWrong(parButton) {
     if (questionNumber === 4) {
         fifthQuestion();
     }
+    if (questionNumber === 5) {
+        allDone();
+    }
 }
 
 
@@ -188,6 +192,18 @@ function fifthQuestion() {
     button3.value = "false"
     button4.value = "true"
 
+}
+
+function allDone() {
+
+    h2Tags[0].textContent = "All done!"
+    var highScore = score - timeTrack
+    pTags[0].textContent = "Your final score is " + highScore 
+
+    questDiv.children[0].removeChild(button1);
+    questDiv.children[1].removeChild(button2);
+    questDiv.children[2].removeChild(button3);
+    questDiv.children[3].removeChild(button4);
 }
 
 
