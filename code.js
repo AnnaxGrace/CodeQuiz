@@ -7,7 +7,9 @@ var questDiv = document.createElement("div");
 var timeEl = document.querySelector("#time");
 
 var secondsLeft = 60;
-var score = 0;
+var score = 5;
+var timeTrack = 5;
+var questionNumber = 0;
 
 var p1 = document.createElement("p");
 var p2 = document.createElement("p");
@@ -29,6 +31,7 @@ function setTime () {
             clearInterval(timerInterval);
             console.log("time up");
             //This is where you'll add the score page function
+            //do score - timeTrack, every time answer question -timeTrack
             
         }
 
@@ -63,8 +66,40 @@ function firstQuestion() {
     button3.textContent = "3. Href Text Mark-Up Language"
     button4.textContent = "4. Href Technical Mark-Up Language"
 
+    button1.value = "true"
+    button2.value = "false"
+    button3.value = "false"
+    button4.value = "false"
+    console.log(button1.value);
     setTime();
 }
+
+function rightWrong(parButton) {
+    if (parButton.value === "true") {
+        score++
+        console.log(score);
+    }
+    else if (parButton.value === "false") {
+            score--
+            console.log(score);
+    }
+    
+    }
+
+
+
+/* function secondQuestion() {
+    if (button1.value === "true") {
+    score++
+    console.log(score);
+    }
+    else if (button1.value === "false") {
+        score--
+        console.log(score);
+    }
+
+}
+*/
 
 
 startBtn.addEventListener("click", function() {
@@ -76,6 +111,8 @@ startBtn.addEventListener("click", function() {
 button1.addEventListener("click", function() {
     event.preventDefault();
     console.log("wow");
+    rightWrong(button1);
+
     
 
 });
@@ -83,6 +120,7 @@ button1.addEventListener("click", function() {
 button2.addEventListener("click", function() {
     event.preventDefault();
     console.log("wow2");
+    rightWrong(button2)
     
 
 });
@@ -90,6 +128,7 @@ button2.addEventListener("click", function() {
 button3.addEventListener("click", function() {
     event.preventDefault();
     console.log("wow3");
+    rightWrong(button3);
     
 
 });
@@ -97,6 +136,7 @@ button3.addEventListener("click", function() {
 button4.addEventListener("click", function() {
     event.preventDefault();
     console.log("wow4");
+    rightWrong(button4);
     
 
 });
