@@ -6,6 +6,7 @@ var pTags = document.querySelectorAll("p");
 var questDiv = document.createElement("div");
 var timeEl = document.querySelector("#time");
 var scoreForm = document.createElement("form");
+var highTime = document.querySelectorAll("h5");
 
 var secondsLeft = 60;
 var score = 0;
@@ -215,7 +216,8 @@ function fifthQuestion() {
 
 function allDone() {
 
-    secondsLeft = 0;
+    secondsLeft = secondsLeft - (secondsLeft - 1)
+    console.log("this is" + secondsLeft);
     h2Tags[0].textContent = "All done!"
     var highScore = score - timeTrack
     pTags[0].textContent = "Your final score is " + highScore 
@@ -261,6 +263,19 @@ function allDone() {
     
 }
 
+function highScorePage() {
+    h2Tags[0].textContent = "Highscores"
+    console.log(timeEl);
+    highTime[0].textContent = ""
+    highTime[1].textContent = ""
+    // document.chilren[1].removeChild(highTime);
+    
+    
+
+    questDiv.children[0].children[0].removeChild(labelInput);
+    questDiv.children[0].children[0].removeChild(scoreInput);
+    questDiv.children[0].children[0].removeChild(submitButton);
+}
 
 
 submitButton.addEventListener("click", function(event) {
@@ -274,6 +289,8 @@ submitButton.addEventListener("click", function(event) {
     
 
     localStorage.setItem("scoreObject", JSON.stringify(scoreObject));
+
+    highScorePage();
 
 }); 
 
