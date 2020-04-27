@@ -5,11 +5,18 @@ var h2Tags = document.querySelectorAll("h2");
 var pTags = document.querySelectorAll("p");
 var questDiv = document.createElement("div");
 var timeEl = document.querySelector("#time");
+var scoreForm = document.createElement("form");
 
 var secondsLeft = 60;
 var score = 0;
 var timeTrack = 5;
 var questionNumber = 0;
+var highScore = score - timeTrack;
+
+// var initials = scoreInput.value;
+    // var scoreObject = {
+        // initals : highScore,
+    // }
 
 /*
 var wrongText = document.createElement("p");
@@ -30,7 +37,16 @@ var button2 = document.createElement("button");
 var button3 = document.createElement("button");
 var button4 = document.createElement("button");
 
+var submitButton = document.createElement("input");
+submitButton.setAttribute("type", "submit");
+submitButton.setAttribute("value", "submit");
+submitButton.setAttribute("style", "background-color: blueviolet;");
 
+var scoreInput = document.createElement("input");
+    var labelInput = document.createElement("label");
+    scoreInput.setAttribute("type", "text");
+    labelInput.setAttribute("for", "Score")
+    labelInput.textContent = "Enter initials: "
 
 function setTime () {
     var timerInterval = setInterval(function() {
@@ -38,10 +54,10 @@ function setTime () {
         timeEl.textContent = "Time: " + secondsLeft;
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
+            timeEl.textContent = "Time: 0";
             console.log("time up");
             allDone();
-            //This is where you'll add the score page function
-            //do score - timeTrack, every time answer question -timeTrack
+            
             
         }
 
@@ -83,6 +99,9 @@ function firstQuestion() {
     button3.value = "false"
     button4.value = "false"
     console.log(button1.value);
+
+    
+
     setTime();
 }
 
@@ -196,17 +215,67 @@ function fifthQuestion() {
 
 function allDone() {
 
+    secondsLeft = 0;
     h2Tags[0].textContent = "All done!"
     var highScore = score - timeTrack
     pTags[0].textContent = "Your final score is " + highScore 
+    
 
     questDiv.children[0].removeChild(button1);
     questDiv.children[1].removeChild(button2);
     questDiv.children[2].removeChild(button3);
     questDiv.children[3].removeChild(button4);
+
+    questDiv.children[0].appendChild(scoreForm);
+    // var scoreInput = document.createElement("input");
+    // var labelInput = document.createElement("label");
+    // scoreInput.setAttribute("type", "text");
+    // labelInput.setAttribute("for", "Score")
+    // labelInput.textContent = "Enter initials: "
+    // var submitButton = document.createElement("button");
+    // submitButton.textContent = "Submit"
+    // submitButton.setAttribute("style", "background-color: blueviolet;");
+
+    questDiv.children[0].children[0].appendChild(labelInput);
+    questDiv.children[0].children[0].appendChild(scoreInput);
+    questDiv.children[0].children[0].appendChild(submitButton);
+
+
+    /*
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        
+        var scoreObject = {
+            labelInput: highScore,
+        }
+
+    localStorage.setItem("scoreObject", JSON.stringify(scoreObject));
+
+        });
+        */
+        
+
+    // var lastUser = JSON.parse(localStorage.getItem("user"));
+
+
+    
 }
 
 
+
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    console.log(scoreInput.value);
+    var scream = scoreInput.value;
+    console.log(scream);
+    var scoreObject = {
+        scream : highScore,
+    }
+    
+
+    localStorage.setItem("scoreObject", JSON.stringify(scoreObject));
+
+}); 
 
 startBtn.addEventListener("click", function() {
     event.preventDefault();
