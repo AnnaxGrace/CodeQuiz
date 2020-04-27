@@ -43,6 +43,13 @@ submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "submit");
 submitButton.setAttribute("style", "background-color: blueviolet;");
 
+var goBackButton = document.createElement("button");
+goBackButton.setAttribute("style", "background-color: blueviolet;");
+goBackButton.textContent = "Go Back"
+var clearHighScoreButton = document.createElement("button");
+clearHighScoreButton.setAttribute("style", "background-color: blueviolet;");
+clearHighScoreButton.textContent = "Clear Scores"
+
 var scoreInput = document.createElement("input");
     var labelInput = document.createElement("label");
     scoreInput.setAttribute("type", "text");
@@ -264,17 +271,24 @@ function allDone() {
 }
 
 function highScorePage() {
+    var scoreList = JSON.parse(localStorage.getItem("scoreObject"));
     h2Tags[0].textContent = "Highscores"
     console.log(timeEl);
     highTime[0].textContent = ""
     highTime[1].textContent = ""
-    // document.chilren[1].removeChild(highTime);
+    pTags[0].textContent = scoreList
     
     
 
     questDiv.children[0].children[0].removeChild(labelInput);
     questDiv.children[0].children[0].removeChild(scoreInput);
     questDiv.children[0].children[0].removeChild(submitButton);
+
+    questDiv.children[0].children[0].appendChild(goBackButton);
+    questDiv.children[0].children[0].appendChild(clearHighScoreButton);
+
+    
+
 }
 
 
@@ -282,9 +296,12 @@ submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     console.log(scoreInput.value);
     var scream = scoreInput.value;
+    var highScore = score - timeTrack
     console.log(scream);
+    console.log(highScore);
     var scoreObject = {
-        scream : highScore,
+        screamKey : scream,
+        highScoreKey : highScore,
     }
     
 
