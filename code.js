@@ -50,6 +50,8 @@ var clearHighScoreButton = document.createElement("button");
 clearHighScoreButton.setAttribute("style", "background-color: blueviolet;");
 clearHighScoreButton.textContent = "Clear Scores"
 
+var keepScores = [];
+
 var scoreInput = document.createElement("input");
     var labelInput = document.createElement("label");
     scoreInput.setAttribute("type", "text");
@@ -231,7 +233,12 @@ function allDone() {
     questDiv.children[2].removeChild(button3);
     questDiv.children[3].removeChild(button4);
 
-    questDiv.children[0].appendChild(scoreForm);
+    questDiv.removeChild(p1);
+    questDiv.removeChild(p2);
+    questDiv.removeChild(p3);
+    questDiv.removeChild(p4);
+
+    questDiv.appendChild(scoreForm);
     // var scoreInput = document.createElement("input");
     // var labelInput = document.createElement("label");
     // scoreInput.setAttribute("type", "text");
@@ -241,9 +248,9 @@ function allDone() {
     // submitButton.textContent = "Submit"
     // submitButton.setAttribute("style", "background-color: blueviolet;");
 
-    questDiv.children[0].children[0].appendChild(labelInput);
-    questDiv.children[0].children[0].appendChild(scoreInput);
-    questDiv.children[0].children[0].appendChild(submitButton);
+    questDiv.children[0].appendChild(labelInput);
+    questDiv.children[0].appendChild(scoreInput);
+    questDiv.children[0].appendChild(submitButton);
 
 
     /*
@@ -267,20 +274,26 @@ function allDone() {
 }
 
 function highScorePage() {
+    // var keepScores = [];
     var scoreList = JSON.parse(localStorage.getItem("scoreArray"));
+    keepScores.push(scoreList);
+    var newList = keepScores.join(" <br> ");
+    console.log(newList)
+    
     h2Tags[0].textContent = "Highscores"
     highTime[0].textContent = ""
     highTime[1].textContent = ""
-    pTags[0].innerHTML = scoreList
+    pTags[0].innerHTML = newList
     
     
 
-    questDiv.children[0].children[0].removeChild(labelInput);
-    questDiv.children[0].children[0].removeChild(scoreInput);
-    questDiv.children[0].children[0].removeChild(submitButton);
+    questDiv.children[0].removeChild(labelInput);
+    questDiv.children[0].removeChild(scoreInput);
+    questDiv.children[0].removeChild(submitButton);
+    questDiv.removeChild(scoreForm);
 
-    questDiv.children[0].children[0].appendChild(goBackButton);
-    questDiv.children[0].children[0].appendChild(clearHighScoreButton);
+    questDiv.appendChild(goBackButton);
+    questDiv.appendChild(clearHighScoreButton);
 
     
 
@@ -291,9 +304,14 @@ function startPage() {
     highTime[0].textContent = "View HighScores"
     highTime[1].textContent = "Time: 0"
     pTags[0].textContent = "Take our challenge! Do you know coding as well as well as you think you do? Answer correctly and you'll get points! Answer incorrectly and you'll get points (and time!!) taken away! Any questions you don't answer are negative points! Add your incredible score to our high scores so you can compete against youself! You have 60 seconds to take the quiz." 
-    divTags[0].children[2].appendChild(startBtn);
-    questDiv.children[0].children[0].removeChild(goBackButton);
-    questDiv.children[0].children[0].removeChild(clearHighScoreButton);
+    questDiv.removeChild(goBackButton);
+    questDiv.removeChild(clearHighScoreButton);
+    divTags[0].removeChild(questDiv);
+    divTags[0].appendChild(startBtn);
+    secondsLeft = 60;
+    score = 0;
+    timeTrack = 5;
+    questionNumber = 0;
 }
 
 
@@ -311,9 +329,17 @@ submitButton.addEventListener("click", function(event) {
 
 }); 
 
+clearHighScoreButton.addEventListener("click", function() {
+    event.preventDefault();
+    localStorage.clear();
+    pTags[0].innerHTML = ""
+    
+});
+
 goBackButton.addEventListener("click", function() {
     event.preventDefault();
     startPage();
+    localStorage.clear();
     
     
 });
@@ -326,7 +352,6 @@ startBtn.addEventListener("click", function() {
 
 button1.addEventListener("click", function() {
     event.preventDefault();
-    console.log("wow");
     rightWrong(button1);
     
     
@@ -335,21 +360,18 @@ button1.addEventListener("click", function() {
 
 button2.addEventListener("click", function() {
     event.preventDefault();
-    console.log("wow2");
     rightWrong(button2)
     
 });
 
 button3.addEventListener("click", function() {
     event.preventDefault();
-    console.log("wow3");
     rightWrong(button3);
     
 });
 
 button4.addEventListener("click", function() {
     event.preventDefault();
-    console.log("wow4");
     rightWrong(button4);
     
 
