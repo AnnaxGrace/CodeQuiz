@@ -269,7 +269,6 @@ function allDone() {
 function highScorePage() {
     var scoreList = JSON.parse(localStorage.getItem("scoreArray"));
     h2Tags[0].textContent = "Highscores"
-    console.log(timeEl);
     highTime[0].textContent = ""
     highTime[1].textContent = ""
     pTags[0].innerHTML = scoreList
@@ -287,14 +286,22 @@ function highScorePage() {
 
 }
 
+function startPage() {
+    h2Tags[0].textContent = "Coding Quiz Challenge!"
+    highTime[0].textContent = "View HighScores"
+    highTime[1].textContent = "Time: 0"
+    pTags[0].textContent = "Take our challenge! Do you know coding as well as well as you think you do? Answer correctly and you'll get points! Answer incorrectly and you'll get points (and time!!) taken away! Any questions you don't answer are negative points! Add your incredible score to our high scores so you can compete against youself! You have 60 seconds to take the quiz." 
+    divTags[0].children[2].appendChild(startBtn);
+    questDiv.children[0].children[0].removeChild(goBackButton);
+    questDiv.children[0].children[0].removeChild(clearHighScoreButton);
+}
+
 
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     console.log(scoreInput.value);
     var scream = scoreInput.value;
     var highScore = score - timeTrack
-    console.log(scream);
-    console.log(highScore);
     var scoreArray = [scream, highScore]
     
 
@@ -303,6 +310,13 @@ submitButton.addEventListener("click", function(event) {
     highScorePage();
 
 }); 
+
+goBackButton.addEventListener("click", function() {
+    event.preventDefault();
+    startPage();
+    
+    
+});
 
 startBtn.addEventListener("click", function() {
     event.preventDefault();
