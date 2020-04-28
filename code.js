@@ -115,15 +115,14 @@ function firstQuestion() {
 
 function rightWrong(parButton) {
     if (parButton.value === "true") {  
+       
         score++
         questionNumber++
         timeTrack--
-        console.log("score" + score);
-        console.log("questionnumber" + questionNumber);
-        console.log("timetrack" + timeTrack);
         
     }
     else if (parButton.value === "false") {
+            
             score--
             questionNumber++
             timeTrack--
@@ -133,10 +132,7 @@ function rightWrong(parButton) {
             secondsLeft--
             secondsLeft--
             secondsLeft--
-            console.log("seconds left" + secondsLeft);
-            console.log("score" + score);
-            console.log("questionnumber" + questionNumber);
-            console.log("timetrack" + timeTrack);
+           
     }
     
     if (questionNumber === 1) {
@@ -271,12 +267,12 @@ function allDone() {
 }
 
 function highScorePage() {
-    var scoreList = JSON.parse(localStorage.getItem("scoreObject"));
+    var scoreList = JSON.parse(localStorage.getItem("scoreArray"));
     h2Tags[0].textContent = "Highscores"
     console.log(timeEl);
     highTime[0].textContent = ""
     highTime[1].textContent = ""
-    pTags[0].textContent = scoreList
+    pTags[0].innerHTML = scoreList
     
     
 
@@ -299,13 +295,10 @@ submitButton.addEventListener("click", function(event) {
     var highScore = score - timeTrack
     console.log(scream);
     console.log(highScore);
-    var scoreObject = {
-        screamKey : scream,
-        highScoreKey : highScore,
-    }
+    var scoreArray = [scream, highScore]
     
 
-    localStorage.setItem("scoreObject", JSON.stringify(scoreObject));
+    localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 
     highScorePage();
 
