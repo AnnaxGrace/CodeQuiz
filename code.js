@@ -13,20 +13,8 @@ var score = 0;
 var timeTrack = 5;
 var questionNumber = 0;
 var highScore = score - timeTrack;
+var keepScores = [];
 
-// var initials = scoreInput.value;
-    // var scoreObject = {
-        // initals : highScore,
-    // }
-
-/*
-var wrongText = document.createElement("p");
-var correctText = document.createElement("p");
-wrongText.textContent = "Wrong"
-correctText.textContent = "Correct"
-wrongText.setAttribute("style", "border-top: solid 2px gray; font-style: italic; visibility: hidden;");
-correctText.setAttribute("style","border-top: solid 2px gray; font-style: italic; visibility: hidden;");
-*/
 
 var p1 = document.createElement("p");
 var p2 = document.createElement("p");
@@ -50,13 +38,13 @@ var clearHighScoreButton = document.createElement("button");
 clearHighScoreButton.setAttribute("style", "background-color: blueviolet;");
 clearHighScoreButton.textContent = "Clear Scores"
 
-var keepScores = [];
 
 var scoreInput = document.createElement("input");
-    var labelInput = document.createElement("label");
-    scoreInput.setAttribute("type", "text");
-    labelInput.setAttribute("for", "Score")
-    labelInput.textContent = "Enter initials: "
+var labelInput = document.createElement("label");
+scoreInput.setAttribute("type", "text");
+labelInput.setAttribute("for", "Score")
+labelInput.textContent = "Enter initials: "
+
 
 function setTime () {
     var timerInterval = setInterval(function() {
@@ -65,10 +53,8 @@ function setTime () {
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
             timeEl.textContent = "Time: 0";
-            console.log("time up");
             allDone();
-            
-            
+               
         }
 
     }, 1000);
@@ -79,6 +65,7 @@ function setTime () {
 function firstQuestion() {
     h2Tags[0].textContent = "What does HTML stand for?"
     pTags[0].textContent = "" 
+    
     divTags[0].removeChild(divTags[0].children[2])
     divTags[0].appendChild(questDiv);
 
@@ -91,8 +78,6 @@ function firstQuestion() {
     questDiv.children[1].appendChild(button2);
     questDiv.children[2].appendChild(button3);
     questDiv.children[3].appendChild(button4);
-    // questDiv.appendChild(correctText);
-    // questDiv.appendChild(wrongText);
 
     button1.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
     button2.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
@@ -108,10 +93,7 @@ function firstQuestion() {
     button2.value = "false"
     button3.value = "false"
     button4.value = "false"
-    console.log(button1.value);
-
     
-
     setTime();
 }
 
@@ -222,7 +204,6 @@ function fifthQuestion() {
 function allDone() {
 
     secondsLeft = secondsLeft - (secondsLeft - 1)
-    console.log("this is" + secondsLeft);
     h2Tags[0].textContent = "All done!"
     var highScore = score - timeTrack
     pTags[0].textContent = "Your final score is " + highScore 
@@ -239,47 +220,18 @@ function allDone() {
     questDiv.removeChild(p4);
 
     questDiv.appendChild(scoreForm);
-    // var scoreInput = document.createElement("input");
-    // var labelInput = document.createElement("label");
-    // scoreInput.setAttribute("type", "text");
-    // labelInput.setAttribute("for", "Score")
-    // labelInput.textContent = "Enter initials: "
-    // var submitButton = document.createElement("button");
-    // submitButton.textContent = "Submit"
-    // submitButton.setAttribute("style", "background-color: blueviolet;");
-
+    
     questDiv.children[0].appendChild(labelInput);
     questDiv.children[0].appendChild(scoreInput);
     questDiv.children[0].appendChild(submitButton);
-
-
-    /*
-    submitButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        
-        var scoreObject = {
-            labelInput: highScore,
-        }
-
-    localStorage.setItem("scoreObject", JSON.stringify(scoreObject));
-
-        });
-        */
-        
-
-    // var lastUser = JSON.parse(localStorage.getItem("user"));
-
-
     
 }
 
 function highScorePage() {
-    // var keepScores = [];
-    console.log(keepScores);
+    
     var scoreList = JSON.parse(localStorage.getItem("scoreArray"));
     keepScores.push(scoreList);
     var newList = keepScores.join(" <br> ");
-    console.log(newList)
     
     h2Tags[0].textContent = "Highscores"
     highTime[0].textContent = ""
@@ -295,20 +247,20 @@ function highScorePage() {
 
     divTags[0].appendChild(goBackButton);
     divTags[0].appendChild(clearHighScoreButton);
-    
-
-    
 
 }
 
 function startPage() {
+
     h2Tags[0].textContent = "Coding Quiz Challenge!"
     highTime[0].textContent = "View HighScores"
     highTime[1].textContent = "Time: 0"
     pTags[0].textContent = "Take our challenge! Do you know coding as well as well as you think you do? Answer correctly and you'll get points! Answer incorrectly and you'll get points (and time!!) taken away! Any questions you don't answer are negative points! Add your incredible score to our high scores so you can compete against youself! You have 60 seconds to take the quiz." 
+   
     divTags[0].removeChild(goBackButton);
     divTags[0].removeChild(clearHighScoreButton);
     divTags[0].removeChild(questDiv);
+    
     divTags[0].appendChild(startBtn);
     secondsLeft = 60;
     score = 0;
@@ -319,15 +271,9 @@ function startPage() {
 
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
-    console.log(scoreInput.value);
-    var scream = scoreInput.value;
+    var inputValue = scoreInput.value;
     var highScore = score - timeTrack
-    var scoreArray = [scream, highScore]
-    
-    // questDiv.children[0].removeChild(labelInput);
-    // questDiv.children[0].removeChild(scoreInput);
-    // questDiv.children[0].removeChild(submitButton);
-    // questDiv.removeChild(scoreForm);
+    var scoreArray = [inputValue, highScore]
     localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 
     highScorePage();
@@ -339,7 +285,6 @@ clearHighScoreButton.addEventListener("click", function() {
     localStorage.clear();
     pTags[0].innerHTML = ""
     keepScores = []
-    console.log(keepScores);
     
 });
 
@@ -382,5 +327,4 @@ button4.addEventListener("click", function() {
     event.preventDefault();
     rightWrong(button4);
     
-
 });
