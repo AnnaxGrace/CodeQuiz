@@ -275,6 +275,7 @@ function allDone() {
 
 function highScorePage() {
     // var keepScores = [];
+    console.log(keepScores);
     var scoreList = JSON.parse(localStorage.getItem("scoreArray"));
     keepScores.push(scoreList);
     var newList = keepScores.join(" <br> ");
@@ -292,8 +293,9 @@ function highScorePage() {
     questDiv.children[0].removeChild(submitButton);
     questDiv.removeChild(scoreForm);
 
-    questDiv.appendChild(goBackButton);
-    questDiv.appendChild(clearHighScoreButton);
+    divTags[0].appendChild(goBackButton);
+    divTags[0].appendChild(clearHighScoreButton);
+    
 
     
 
@@ -304,8 +306,8 @@ function startPage() {
     highTime[0].textContent = "View HighScores"
     highTime[1].textContent = "Time: 0"
     pTags[0].textContent = "Take our challenge! Do you know coding as well as well as you think you do? Answer correctly and you'll get points! Answer incorrectly and you'll get points (and time!!) taken away! Any questions you don't answer are negative points! Add your incredible score to our high scores so you can compete against youself! You have 60 seconds to take the quiz." 
-    questDiv.removeChild(goBackButton);
-    questDiv.removeChild(clearHighScoreButton);
+    divTags[0].removeChild(goBackButton);
+    divTags[0].removeChild(clearHighScoreButton);
     divTags[0].removeChild(questDiv);
     divTags[0].appendChild(startBtn);
     secondsLeft = 60;
@@ -322,7 +324,10 @@ submitButton.addEventListener("click", function(event) {
     var highScore = score - timeTrack
     var scoreArray = [scream, highScore]
     
-
+    // questDiv.children[0].removeChild(labelInput);
+    // questDiv.children[0].removeChild(scoreInput);
+    // questDiv.children[0].removeChild(submitButton);
+    // questDiv.removeChild(scoreForm);
     localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 
     highScorePage();
@@ -333,8 +338,11 @@ clearHighScoreButton.addEventListener("click", function() {
     event.preventDefault();
     localStorage.clear();
     pTags[0].innerHTML = ""
+    keepScores = []
+    console.log(keepScores);
     
 });
+
 
 goBackButton.addEventListener("click", function() {
     event.preventDefault();
