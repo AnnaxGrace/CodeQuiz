@@ -6,7 +6,7 @@ var pTags = document.querySelectorAll("p");
 var questDiv = document.createElement("div");
 var timeEl = document.querySelector("#time");
 var scoreForm = document.createElement("form");
-var highTime = document.querySelectorAll("h5");
+var highTime = document.querySelectorAll("h1");
 
 var secondsLeft = 60;
 var score = 0;
@@ -29,13 +29,13 @@ var button4 = document.createElement("button");
 var submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "submit");
-submitButton.setAttribute("style", "background-color: blueviolet;");
+submitButton.setAttribute("style", "background-color: yellow;");
 
 var goBackButton = document.createElement("button");
-goBackButton.setAttribute("style", "background-color: blueviolet;");
+goBackButton.setAttribute("style", "background-color: yellow;");
 goBackButton.textContent = "Go Back"
 var clearHighScoreButton = document.createElement("button");
-clearHighScoreButton.setAttribute("style", "background-color: blueviolet;");
+clearHighScoreButton.setAttribute("style", "background-color: yellow;");
 clearHighScoreButton.textContent = "Clear Scores"
 
 
@@ -79,10 +79,10 @@ function firstQuestion() {
     questDiv.children[2].appendChild(button3);
     questDiv.children[3].appendChild(button4);
 
-    button1.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
-    button2.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
-    button3.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
-    button4.setAttribute("style", "background-color: blueviolet; color: white; padding: 6px 12px; border-radius: 25px;");
+    button1.setAttribute("style", "background-color: yellow; color: black; padding: 6px 12px; border-radius: 25px;");
+    button2.setAttribute("style", "background-color: yellow; color: black; padding: 6px 12px; border-radius: 25px;");
+    button3.setAttribute("style", "background-color: yellow; color: black; padding: 6px 12px; border-radius: 25px;");
+    button4.setAttribute("style", "background-color: yellow; color: black; padding: 6px 12px; border-radius: 25px;");
 
     button1.textContent = "1. HyperText Mark-Up Language"
     button2.textContent = "2. Hyper Technical Mark-Up Language"
@@ -235,7 +235,6 @@ function highScorePage() {
     
     h2Tags[0].textContent = "Highscores"
     highTime[0].textContent = ""
-    highTime[1].textContent = ""
     pTags[0].innerHTML = newList
     
     
@@ -253,8 +252,7 @@ function highScorePage() {
 function startPage() {
 
     h2Tags[0].textContent = "Coding Quiz Challenge!"
-    highTime[0].textContent = "View HighScores"
-    highTime[1].textContent = "Time: 0"
+    highTime[0].textContent = ""
     pTags[0].textContent = "Take our challenge! Do you know coding as well as well as you think you do? Answer correctly and you'll get points! Answer incorrectly and you'll get points (and time!!) taken away! Any questions you don't answer are negative points! Add your incredible score to our high scores so you can compete against youself! You have 60 seconds to take the quiz." 
    
     divTags[0].removeChild(goBackButton);

@@ -1,11 +1,21 @@
 
 
 .myBtn {
-    background-color: blueviolet;
-    border: none;
+    background-color: yellow;
+    border: black;
+    color: black
+    
 }
 
 .mar {
-    margin-left: 350px;
-    margin-right: 350px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+body {
+    background-image: url("assets/images/quiz background3.png");
+}
+
+.myBtn:hover {
+    background-color: orange;
 }
